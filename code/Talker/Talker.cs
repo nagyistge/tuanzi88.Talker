@@ -25,6 +25,7 @@ namespace Talker
 		protected override void OnStart ()
 		{
 			// Handle when your app starts
+			// YIKANG P1: Init the Constants.gMaxObjectID
 		}
 
 		protected override void OnSleep ()
@@ -35,6 +36,7 @@ namespace Talker
 		protected override void OnResume ()
 		{
 			// Handle when your app resumes
+			// YIKANG P1: Init the Constants.gMaxObjectID
 		}
 	}
 }

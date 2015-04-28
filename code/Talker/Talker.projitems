@@ -10,5 +10,20 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Talker.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)BL\User.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)BL\Message.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)BL\Object.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)BL\Constants.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DL\SQLite.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DAL\MessageRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DAL\UserRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DAL\DataAccessManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DL\LocalDatabase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DL\CloudDatabase.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)BL\" />
+    <Folder Include="$(MSBuildThisFileDirectory)DAL\" />
+    <Folder Include="$(MSBuildThisFileDirectory)DL\" />
   </ItemGroup>
 </Project>
