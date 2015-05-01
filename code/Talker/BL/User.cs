@@ -12,23 +12,25 @@ namespace Talker.BL
 
 	public class User : Object 
 	{
-		public string LoginName { get; set; }
-		public string LoginPassword { get; set; }
-		public UserType Type { get; set; }
-		public List<Message> Messages { get; set; }
+		public string Name { get; set; }
+		public string Password { get; set; }
+		//public UserType Type { get; set; }
 
 		// RULE#3: All function paremeters will start with a "p" as prefix.
-		public User ( string pLoginName, string pPassword, UserType pType )
+		public User (string pLoginName, string pPassword) //, UserType pType )
 		{
-			this.LoginName = pLoginName;
-			this.LoginPassword = pPassword;
-			Type = pType;
+			this.Name = pLoginName;
+			this.Password = pPassword;
+			//Type = pType;
 		}
+
+		public User()
+		{}
 
 		public void SendMessage( User pReceiver, string pText )
 		{
-			Message one = new Message (this, pReceiver, pText);
-			Messages.Add (one);
+			Message one = new Message (this, pReceiver, pText, false);
+			MessageManager.SaveMessage (one);
 		}
 	}
 }
