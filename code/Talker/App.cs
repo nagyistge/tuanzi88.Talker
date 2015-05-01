@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Diagnostics;
 
 using Xamarin.Forms;
+using Talker.BL;
 
 namespace Talker
 {
@@ -8,6 +10,7 @@ namespace Talker
 	{
 		public App ()
 		{
+			/*
 			// The root page of your application
 			MainPage = new ContentPage {
 				Content = new StackLayout {
@@ -20,12 +23,21 @@ namespace Talker
 					}
 				}
 			};
+			*/
+
+			var user = new User ("name", "password");
+			var loginPage = new LoginPage ();
+			loginPage.BindingContext = user;
+			var mainNav = new NavigationPage (loginPage);
+
+			MainPage = mainNav;
 		}
 
 		protected override void OnStart ()
 		{
 			// Handle when your app starts
-			// YIKANG P1: Init the Constants.gMaxObjectID
+			// YIKANG P1: Init the Constants.gMaxObjectID if auto-incremental doesn't work for cloud
+			Debug.WriteLine ("OnStart");
 		}
 
 		protected override void OnSleep ()
@@ -36,7 +48,7 @@ namespace Talker
 		protected override void OnResume ()
 		{
 			// Handle when your app resumes
-			// YIKANG P1: Init the Constants.gMaxObjectID
+			// YIKANG P1: Init the Constants.gMaxObjectID if auto-incremental doesn't work for cloud
 		}
 	}
 }

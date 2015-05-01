@@ -11,42 +11,12 @@ namespace Talker.BL
 		public string Text { get; set; }
 		public bool HasRead { get; set; }
 
-		public Message ( User pSender, User pReceiver, string pText )
+		public Message ( User pSender, User pReceiver, string pText, bool pHasRead )
 		{
 			this.Sender = pSender;
 			this.Receiver = pReceiver;
 			this.Text = pText;
-		}
-
-		public Message()
-		{}
-	}
-
-	public static class MessageManager
-	{
-		public static Message GetMessage(int id)	
-		{
-			return DAL.MessageRepository.GetMessage(id);
-		}
-
-		public static List<Message> GetMessages (User pUser)
-		{
-			return DAL.MessageRepository.GetMessages(pUser);
-		}
-
-		public static void SaveMessage(int id)	
-		{
-			DAL.MessageRepository.GetMessage(id);
-		}
-
-		public static void SaveMessage (Message pMessage)
-		{
-			DAL.MessageRepository.SaveMessage(pMessage);
-		}
-
-		public static void DeleteMessage(Message pMessage)
-		{
-			DAL.MessageRepository.DeleteMessage(pMessage);
+			this.HasRead = pHasRead;
 		}
 	}
 }
