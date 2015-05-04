@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Talker.DAL;
 using Newtonsoft.Json;
 
 namespace Talker.BL

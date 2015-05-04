@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using Talker.BL;
+using Talker.DL;
 
-namespace Talker.DAL
+namespace Talker.BL
 {
 	public interface IMessageDatabase
 	{

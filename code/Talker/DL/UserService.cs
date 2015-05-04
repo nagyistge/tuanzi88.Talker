@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Net.Http;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using Microsoft.WindowsAzure.MobileServices;
@@ -12,40 +11,21 @@ using Talker.BL;
  * Note:
  * YIKANG P3:
  */
-namespace Talker.DAL
+namespace Talker.DL
 {
-    /*
-    public interface IDBService
+    public class UserService : BaseService, IUserService
     {
-        Task InitializeStoreAsync();
-    }
-
-    public interface IUserService : IDBService
-    {
-        List<User> UserList { get; }
-        Task<List<User>> RefreshDataAsync();
-        Task SyncAsync();
-    }
-    */
-
-    public class UserService
-	{
         protected static UserService mInstance = new UserService();
-        private MobileServiceClient mClient;
         private IMobileServiceSyncTable<User> mUserTable;
-        private bool mIsStoreInitialized;
-		private UserService ()
-		{
-            // For cloud db
-            mClient = DatabaseService.Instance.Client;
 
+        private UserService ()
+            : base()
+		{
             // Define table for local db
             DatabaseService.Instance.LocalStore.DefineTable<User>();
 
             // Create user table for local db
             mUserTable = mClient.GetSyncTable<User>();
-
-            mIsStoreInitialized = false;   // YIKANG P3: Can init once from outside?
 		}
 
         public static UserService Default
@@ -55,18 +35,8 @@ namespace Talker.DAL
             }
         }
 
+        #region IUserService implementation
         public List<User> UserList { get; private set; }
-
-        public async Task InitializeStoreAsync()
-        {
-            // YIKANG P1: Must have better way to init it
-            if (!mIsStoreInitialized) {
-                // Uses the default conflict handler, which fails on conflict
-                // To use a different conflict handler, pass a parameter to InitializeAsync. For more details, see http://go.microsoft.com/fwlink/?LinkId=521416
-                await mClient.SyncContext.InitializeAsync(DatabaseService.Instance.LocalStore);
-                mIsStoreInitialized = true;
-            }
-        }
 
         public async Task SyncAsync()
         {
@@ -112,9 +82,9 @@ namespace Talker.DAL
             }
         }
 
-        public User GetUser (string pName, string pPassword, string pType)
+        public async Task<User> GetUser (string pName, string pPassword, string pType)
         {
-            RefreshDataAsync();
+            await RefreshDataAsync();
 
             foreach (User one in UserList)
             {
@@ -123,6 +93,7 @@ namespace Talker.DAL
             }
             return null;
         }
+        #endregion
 	}
 }
 

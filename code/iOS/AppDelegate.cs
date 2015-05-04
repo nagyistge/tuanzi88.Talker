@@ -5,6 +5,8 @@ using System.Linq;
 using Foundation;
 using UIKit;
 
+using Talker;
+
 namespace Talker.iOS
 {
 	[Register ("AppDelegate")]

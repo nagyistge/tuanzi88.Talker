@@ -2,8 +2,10 @@
 using System.Diagnostics;
 
 using Xamarin.Forms;
+
 using Talker.BL;
-using Talker.View;
+using Talker.DL;
+using Talker.VL;
 
 namespace Talker
 {
@@ -11,8 +13,9 @@ namespace Talker
 	{
 		public App ()
 		{
+            IUserService userService = (IUserService)UserService.Default;
             var user = new User("name", "password", "Student"); 
-			var loginPage = new LoginPage ();
+            var loginPage = new LoginPage (userService);
 			loginPage.BindingContext = user;
 			var mainNav = new NavigationPage (loginPage);
 			MainPage = mainNav;

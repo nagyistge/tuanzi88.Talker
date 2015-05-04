@@ -2,17 +2,20 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using Xamarin.Forms;
+using System.Threading.Tasks;
 
 using Talker.BL;
-using Talker.DAL;
 
-
-namespace Talker.View
+namespace Talker.VL
 {
     public class LoginPage : ContentPage
     {
-        public LoginPage()
+        IUserService mUserService;
+
+        public LoginPage(IUserService pUserService)
         {
+            // Init
+            mUserService = pUserService;
             this.SetBinding(ContentPage.TitleProperty, "Name");
             NavigationPage.SetHasNavigationBar(this, true);
 
@@ -64,14 +67,16 @@ namespace Talker.View
         {
             base.OnAppearing();
 
-            await UserService.Default.InitializeStoreAsync();
-            await UserService.Default.RefreshDataAsync();
+            await mUserService.InitializeStoreAsync();
+            await mUserService.RefreshDataAsync();
         }
 
         protected async void LoginButtonClick(object sender, EventArgs e)
         {
+            await mUserService.RefreshDataAsync();
+
             var one = (User)BindingContext;
-            var user = UserService.Default.GetUser(one.Name, one.Password, one.Type);
+            var user = mUserService.GetUser(one.Name, one.Password, one.Type);
 
             if (user != null)
             {
@@ -85,7 +90,7 @@ namespace Talker.View
         {
             // YIKANG P1: register name and password to user
             var one = (User)BindingContext;
-            await UserService.Default.InsertUserAsync(one);
+            await mUserService.InsertUserAsync(one);
         }
     }
 }

@@ -14,12 +14,15 @@
     <Compile Include="$(MSBuildThisFileDirectory)BL\Object.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)BL\Constants.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)App.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Views\LoginPage.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Views\MessageListPage.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Views\MessagePage.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DL\UserService.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DL\MessageService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DL\DatabaseService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DL\BaseService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)VL\LoginPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)VL\MessageListPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)VL\MessagePage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)BL\MessageService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)BL\IUserService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DL\UserService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)BL\IBaseService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)BL\" />
