@@ -7,7 +7,6 @@ using Microsoft.WindowsAzure.MobileServices.Sync;
 using Microsoft.WindowsAzure.MobileServices.SQLiteStore;
 
 using Talker.BL;
-using Talker.DL;
 
 /*
  * Note:
@@ -61,8 +60,7 @@ namespace Talker.DAL
         public async Task InitializeStoreAsync()
         {
             // YIKANG P1: Must have better way to init it
-            if (!mIsStoreInitialized)
-            {
+            if (!mIsStoreInitialized) {
                 // Uses the default conflict handler, which fails on conflict
                 // To use a different conflict handler, pass a parameter to InitializeAsync. For more details, see http://go.microsoft.com/fwlink/?LinkId=521416
                 await mClient.SyncContext.InitializeAsync(DatabaseService.Instance.LocalStore);
@@ -72,13 +70,11 @@ namespace Talker.DAL
 
         public async Task SyncAsync()
         {
-            try
-            {
+            try {
                 await mClient.SyncContext.PushAsync();
                 await mUserTable.PullAsync("allUsers", mUserTable.CreateQuery()); // query ID is used for incremental sync
             }
-            catch (MobileServiceInvalidOperationException e)
-            {
+            catch (MobileServiceInvalidOperationException e) {
                 Console.Error.WriteLine(@"Sync Failed: {0}", e.Message);
             }
         }
@@ -106,22 +102,23 @@ namespace Talker.DAL
 
         public async Task InsertUserAsync (User pUser)
         {
-            try {                
+            try {
                 await mUserTable.InsertAsync (pUser); // Insert a new TodoItem into the local database. 
                 await SyncAsync(); // send changes to the mobile service
 
                 UserList.Add (pUser); 
-
             } catch (MobileServiceInvalidOperationException e) {
                 Console.Error.WriteLine (@"ERROR {0}", e.Message);
             }
         }
 
-        public User GetUser (string pName, string pPassword)
+        public User GetUser (string pName, string pPassword, string pType)
         {
+            RefreshDataAsync();
+
             foreach (User one in UserList)
             {
-                if (one.Name == pName && one.Password == pPassword)
+                if (one.Name == pName && one.Password == pPassword && one.Type == pType)
                     return one;
             }
             return null;

@@ -1,5 +1,4 @@
 ﻿using System;
-using Talker.DL;
 
 namespace Talker.BL
 {

@@ -15,8 +15,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Doc", "Doc", "{33D68844-982
 		..\doc\todo.txt = ..\doc\todo.txt
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Talker", "..\samples\Talker\Talker\Talker.csproj", "{07F1CD1B-626F-4BE5-9840-97B44CBB94C9}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|iPhoneSimulator = Debug|iPhoneSimulator
@@ -29,22 +27,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{07F1CD1B-626F-4BE5-9840-97B44CBB94C9}.Ad-Hoc|iPhone.ActiveCfg = Release|iPhone
-		{07F1CD1B-626F-4BE5-9840-97B44CBB94C9}.Ad-Hoc|iPhone.Build.0 = Release|iPhone
-		{07F1CD1B-626F-4BE5-9840-97B44CBB94C9}.AppStore|iPhone.ActiveCfg = Release|iPhone
-		{07F1CD1B-626F-4BE5-9840-97B44CBB94C9}.AppStore|iPhone.Build.0 = Release|iPhone
-		{07F1CD1B-626F-4BE5-9840-97B44CBB94C9}.Debug|Any CPU.ActiveCfg = Debug|iPhoneSimulator
-		{07F1CD1B-626F-4BE5-9840-97B44CBB94C9}.Debug|Any CPU.Build.0 = Debug|iPhoneSimulator
-		{07F1CD1B-626F-4BE5-9840-97B44CBB94C9}.Debug|iPhone.ActiveCfg = Debug|iPhone
-		{07F1CD1B-626F-4BE5-9840-97B44CBB94C9}.Debug|iPhone.Build.0 = Debug|iPhone
-		{07F1CD1B-626F-4BE5-9840-97B44CBB94C9}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
-		{07F1CD1B-626F-4BE5-9840-97B44CBB94C9}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
-		{07F1CD1B-626F-4BE5-9840-97B44CBB94C9}.Release|Any CPU.ActiveCfg = Release|iPhoneSimulator
-		{07F1CD1B-626F-4BE5-9840-97B44CBB94C9}.Release|Any CPU.Build.0 = Release|iPhoneSimulator
-		{07F1CD1B-626F-4BE5-9840-97B44CBB94C9}.Release|iPhone.ActiveCfg = Release|iPhone
-		{07F1CD1B-626F-4BE5-9840-97B44CBB94C9}.Release|iPhone.Build.0 = Release|iPhone
-		{07F1CD1B-626F-4BE5-9840-97B44CBB94C9}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
-		{07F1CD1B-626F-4BE5-9840-97B44CBB94C9}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
 		{3C97C85A-D61A-471D-99C6-0B46836304BD}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
 		{3C97C85A-D61A-471D-99C6-0B46836304BD}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
 		{3C97C85A-D61A-471D-99C6-0B46836304BD}.AppStore|iPhone.ActiveCfg = AppStore|iPhone

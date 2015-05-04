@@ -41,3 +41,7 @@ http://stackoverflow.com/questions/26939667/how-to-properly-sync-xamarin-ios-sql
 
 - Using offline data sync in Mobile Services
 http://azure.microsoft.com/en-us/documentation/articles/mobile-services-xamarin-ios-get-started-offline-data/
+
+
+- Controls of Xamarin forms
+https://visualstudiomagazine.com/articles/2015/03/01/everyone-gets-xaml-with-xamarinforms.aspx

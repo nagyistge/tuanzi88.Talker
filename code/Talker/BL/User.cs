@@ -6,9 +6,9 @@ using Newtonsoft.Json;
 namespace Talker.BL
 {
 	public enum UserType {
-		None = 0,
-		Teacher = 1,
-		Student = 2,
+		Admin,
+		Teacher,
+		Student,
 	}
 
 	public class User : Object 
@@ -19,20 +19,21 @@ namespace Talker.BL
         [JsonProperty(PropertyName = "password")]
 		public string Password { get; set; }
 
-        //[JsonProperty(PropertyName = "type")]
-		//public UserType Type { get; set; }
+        [JsonProperty(PropertyName = "type")]
+		public string Type { get; set; }
 
-        public User (string pLoginName, string pPassword)//, UserType pType )
+        public User (string pLoginName, string pPassword, string pType )
 		{
 			this.Name = pLoginName;
 			this.Password = pPassword;
-			//this.Type = pType;
+			this.Type = pType;
 		}
 
         public User()
         {
             this.Name = "";
             this.Password = "";
+            this.Type = "Student";
         }
 	}
 }
