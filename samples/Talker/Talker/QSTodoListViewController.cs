@@ -32,7 +32,6 @@ namespace Talker
 		{
 			RefreshControl.BeginRefreshing ();
 		
-            //await todoService.SyncAsync();
             await todoService.RefreshDataAsync ();
 
 			RefreshControl.EndRefreshing ();

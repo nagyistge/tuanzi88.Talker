@@ -12,10 +12,8 @@ namespace Talker
     {
         static QSTodoService instance = new QSTodoService ();
 
-        //const string applicationURL = @"https://talker.azure-mobile.net/";
-        //const string applicationKey = @"tHduMiKBYdscDusiKwEQHzOiPmQHQj75";
-        const string applicationURL = @"https://your-mobile-service.azure-mobile.xxx/";
-        const string applicationKey = @"AppKey";
+        const string applicationURL = @"https://talker.azure-mobile.net/";
+        const string applicationKey = @"tHduMiKBYdscDusiKwEQHzOiPmQHQj75";
         const string localDbPath    = "localstore.db";
 
         private MobileServiceClient client;
@@ -69,7 +67,7 @@ namespace Talker
             try {
 				// update the local store
 				// all operations on todoTable use the local database, call SyncAsync to send changes
-                //await SyncAsync(); 							
+                await SyncAsync(); 							
 
                 // This code refreshes the entries in the list view by querying the local TodoItems table.
                 // The query excludes completed TodoItems
@@ -88,7 +86,7 @@ namespace Talker
         {
             try {                
 				await todoTable.InsertAsync (todoItem); // Insert a new TodoItem into the local database. 
-				//await SyncAsync(); // send changes to the mobile service
+				await SyncAsync(); // send changes to the mobile service
 
                 Items.Add (todoItem); 
 
@@ -102,7 +100,7 @@ namespace Talker
             try {
 				item.Complete = true; 
                 await todoTable.UpdateAsync (item); // update todo item in the local database
-				//await SyncAsync(); // send changes to the mobile service
+				await SyncAsync(); // send changes to the mobile service
 
                 Items.Remove (item);
 
