@@ -7,6 +7,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Talker.iOS", "iOS\Talker.iO
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Talker.Droid", "Droid\Talker.Droid.csproj", "{564D9CA6-BC0F-4C03-8FB1-7211FC9F4025}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Doc", "Doc", "{33D68844-9823-4A80-BFAB-37FAE68010D9}"
+	ProjectSection(SolutionItems) = preProject
+		..\doc\rules.txt = ..\doc\rules.txt
+		..\doc\settings.txt = ..\doc\settings.txt
+		..\doc\techtracks.txt = ..\doc\techtracks.txt
+		..\doc\todo.txt = ..\doc\todo.txt
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|iPhoneSimulator = Debug|iPhoneSimulator
@@ -51,5 +59,7 @@ Global
 		{564D9CA6-BC0F-4C03-8FB1-7211FC9F4025}.Release|iPhone.Build.0 = Release|Any CPU
 		{564D9CA6-BC0F-4C03-8FB1-7211FC9F4025}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{564D9CA6-BC0F-4C03-8FB1-7211FC9F4025}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
 	EndGlobalSection
 EndGlobal
