@@ -1,68 +1,52 @@
 ﻿using System;
 using System.Collections.Generic;
-using Foundation;
+using Talker.DAL;
+using Talker.BL;
+using Microsoft.WindowsAzure.MobileServices;
 using System.Threading.Tasks;
-using UIKit;
-//using System.Net.Http;
 
-// TODO:: Add the following using statement
-//using Microsoft.WindowsAzure.MobileServices;
-
-namespace Talker
+namespace Talker.DL
 {
-	/*
-	public class CloudDatabase : DelegatingHandler
+	public class CloudDatabase : IMessageDatabase, IUserDatabase
 	{
-		private static CloudDatabase todoServiceInstance = new CloudDatabase();
-		public static CloudDatabase DefaultService { get { return todoServiceInstance; } }
+		private readonly MobileServiceClient mClient;
+		private bool mIsThisUserExisted = false;
+		private List<User> UserList = null;
 
-		// TODO:: Uncomment these lines to use Mobile Services
-		private MobileServiceClient mClient;
-		private IMobileServiceTable<Message> mMessageTable;  
-		private IMobileServiceTable<User> mUserTable;   
-
-		// YIKANG P1: Sync local database with cloud database
-	}
-
-
-	public class TodoService : DelegatingHandler
-	{
-		private static TodoService todoServiceInstance = new TodoService();
-		public static TodoService DefaultService { get { return todoServiceInstance; } }
-
-		// TODO:: Uncomment these lines to use Mobile Services
-		private MobileServiceClient client;
-		private IMobileServiceTable<TodoItem> todoTable;        
-
-		public List<TodoItem> Items { get; private set;}
-		private int busyCount = 0;
-
-		// Public events
-		public event Action<bool> BusyUpdate;
-
-		// Constructor
-		protected TodoService()
+        public CloudDatabase (string pAppUrl, string pAppKey)
 		{
-			CurrentPlatform.Init ();
-
-			Items = new List<TodoItem>();
-
-			// TODO:: Uncomment these lines to use Mobile Services			
-			client = new MobileServiceClient (Constants.ApplicationURL, Constants.ApplicationKey, this);	
-			todoTable = client.GetTable<TodoItem>(); // Create an MSTable instance to allow us to work with the TodoItem table
+			CurrentPlatform.Init();
+            mClient = new MobileServiceClient (pAppUrl, pAppKey);
 		}
 
-		async public Task<List<TodoItem>> RefreshDataAsync()
+		public async Task IsThisUserExisted1 (string pName, string pPassword)
 		{
-			// TODO:: Uncomment these lines to use Mobile Services
+			IMobileServiceTable<User> userTable = mClient.GetTable<User>();
+			List<User> items = await userTable
+				//.Where(userItem => userItem.ReadOnly == false)
+				.ToListAsync();
+			if (items.Count >= 1) 
+			{
+				items = await userTable
+					.Where(userItem => userItem.Name == pName && userItem.Password == pPassword)
+					.ToListAsync();
 
+				mIsThisUserExisted |= items.Count == 1;
+			}
+
+			mIsThisUserExisted = false;
+		}
+
+		#region IUserDatabase implementation
+
+		public async Task<User> GetUser (string pName, string pPassword)
+		{
 			try 
 			{
-				// This code refreshes the entries in the list view by querying the TodoItems table.
+				// This code refreshes the entries in the list view by querying the User table.
 				// The query excludes completed TodoItems
-				Items = await todoTable
-					.Where (todoItem => todoItem.Complete == false).ToListAsync();
-
+				UserList = await mClient.GetTable<User>()
+					.Where (user => user.Name == pName && user.Password == pPassword).ToListAsync();
 			} 
 			catch (MobileServiceInvalidOperationException e) 
 			{
@@ -70,77 +54,80 @@ namespace Talker
 				return null;
 			}
 
-
-			return Items;
+			if (UserList.Count >= 1)
+				return UserList [0];
+			else
+				return null;
 		}
 
-		public async Task<int> InsertTodoItemAsync(TodoItem todoItem)
+		public bool IsThisUserExisted (string pName, string pPassword)
 		{
-			try 
+			try
 			{
-				// TODO:: Uncomment this line out to use Mobile Services
-				await todoTable.InsertAsync(todoItem);
-
-				Items.Add(todoItem); 
-
-				return Items.IndexOf(todoItem);
-			} 
-			catch (Exception e) // TODO:: Optional - catch MobileServiceInvalidOperationException instead of generic Exception
+				Task task = IsThisUserExisted1 (pName, pPassword);
+				task.Wait();
+				return mIsThisUserExisted;
+			}
+			catch(MobileServiceInvalidOperationException e)
 			{
-				Console.Error.WriteLine(@"ERROR {0}", e.Message);
-				return 0;
+				Console.WriteLine ("This is the bug"+e.Message);
+				throw e;
 			}
 		}
 
-		public async Task CompleteItemAsync(TodoItem item)
+		public async void SaveUser (User pItem)
 		{
-			try 
+			try
 			{
-				item.Complete = true;
-
-				// This code takes a freshly completed TodoItem and updates the database. When the MobileService 
-				// responds, the item is removed from the list 
-				// TODO:: Uncomment this line to use Mobile Services
-				await todoTable.UpdateAsync(item);
-
-				Items.Remove(item);
-
-			} 
-			catch (Exception e) // TODO:: Optional - catch MobileServiceInvalidOperationException instead of generic Exception
+				await mClient.GetTable<User>().InsertAsync(pItem);
+			}
+			catch(MobileServiceInvalidOperationException e)
 			{
-				Console.Error.WriteLine (@"ERROR {0}", e.Message);
+				Console.WriteLine ("This is the bug"+e.Message);
+				throw e;
 			}
 		}
 
-		void Busy(bool busy)
+		public Talker.BL.User GetSender (int pMessageId)
 		{
-			// assumes always executes on UI thread
-			if (busy) 
-			{
-				if (busyCount++ == 0 && BusyUpdate != null)
-					BusyUpdate(true);
-			} 
-			else 
-			{
-				if (--busyCount == 0 && BusyUpdate != null)
-					BusyUpdate(false);
-			}
+			throw new NotImplementedException ();
 		}
 
-		// TODO:: Uncomment this code when using Mobile Services and inheriting from IServiceFilter
-		#region implemented abstract members of HttpMessageHandler
-
-		protected override async Task<System.Net.Http.HttpResponseMessage> SendAsync (System.Net.Http.HttpRequestMessage request, System.Threading.CancellationToken cancellationToken)
+		public Talker.BL.User GetReceiver (int pMessageId)
 		{
-			Busy (true);
-			var response = await base.SendAsync (request, cancellationToken);
+			throw new NotImplementedException ();
+		}
 
-			Busy (false);
-			return response;
+		public Talker.BL.User GetUser (int pUserId)
+		{
+			throw new NotImplementedException ();
+		}
+
+		#endregion
+
+		#region IMessageDatabase implementation
+
+		public void SaveMessage (Talker.BL.Message pItem)
+		{
+			throw new NotImplementedException ();
+		}
+
+		public void DeleteMessage (Talker.BL.Message pItem)
+		{
+			throw new NotImplementedException ();
+		}
+
+		public System.Collections.Generic.List<Talker.BL.Message> GetMessages (int pUserId)
+		{
+			throw new NotImplementedException ();
+		}
+
+		public Talker.BL.Message GetMessage (int pMessageId)
+		{
+			throw new NotImplementedException ();
 		}
 
 		#endregion
 	}
-*/
 }
 
