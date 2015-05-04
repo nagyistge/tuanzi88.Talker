@@ -4,7 +4,7 @@ using Talker.DAL;
 
 namespace Talker.BL
 {
-	public class Message : ObjectLocal
+	public class Message : Object
 	{
 		public User Sender { get; set; }
 		public User Receiver { get; set; }

@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using Newtonsoft.Json;
+﻿using System;
+using System.Collections.Generic;
 using Talker.DAL;
 
 namespace Talker.BL
@@ -10,35 +10,28 @@ namespace Talker.BL
 		Student = 2,
 	}
 
-	public class User : ObjectCloud
-	{
-		[JsonProperty(PropertyName = "name")]
-		public string Name { get; set;}
-
-		[JsonProperty(PropertyName = "password")]
-		public string Password { get; set;}
-
-		public User (string name, string password)
-		{
-			this.Name = name;
-			this.Password = password;
-		}
-
-	}
-
-	public class UserLocal : ObjectLocal
+	public class User : Object 
 	{
 		public string Name { get; set; }
-		public string Password { get; set;}
+		public string Password { get; set; }
+		//public UserType Type { get; set; }
 
-		public UserLocal (string name, string password)
+		// RULE#3: All function paremeters will start with a "p" as prefix.
+		public User (string pLoginName, string pPassword) //, UserType pType )
 		{
-			this.Name = name;
-			this.Password = password;
+			this.Name = pLoginName;
+			this.Password = pPassword;
+			//Type = pType;
 		}
 
-		public UserLocal()
+		public User()
 		{}
+
+		public void SendMessage( User pReceiver, string pText )
+		{
+			Message one = new Message (this, pReceiver, pText, false);
+			MessageManager.SaveMessage (one);
+		}
 	}
 }
 

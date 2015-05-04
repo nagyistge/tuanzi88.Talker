@@ -1,9 +1,0 @@
-
-UI
-- XAML & MVVM
-http://developer.xamarin.com/guides/cross-platform/xamarin-forms/Xaml-for-Xamarin-forms/
-
-
-DATABASE
-- Offline Mobile Database
-http://azure.microsoft.com/en-us/documentation/articles/mobile-services-xamarin-ios-get-started-offline-data/
