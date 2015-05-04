@@ -31,7 +31,10 @@ namespace Talker
 		private async Task RefreshAsync ()
 		{
 			RefreshControl.BeginRefreshing ();
-			await todoService.RefreshDataAsync ();
+		
+            //await todoService.SyncAsync();
+            await todoService.RefreshDataAsync ();
+
 			RefreshControl.EndRefreshing ();
 
 			TableView.ReloadData ();
