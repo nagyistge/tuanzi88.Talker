@@ -10,6 +10,21 @@ namespace Talker
 	{
 		public App ()
 		{
+			/*
+			// The root page of your application
+			MainPage = new ContentPage {
+				Content = new StackLayout {
+					VerticalOptions = LayoutOptions.Center,
+					Children = {
+						new Label {
+							XAlign = TextAlignment.Center,
+							Text = "Welcome to Xamarin Forms!"
+						}
+					}
+				}
+			};
+			*/
+
 			var user = new User ("name", "password");
 			var loginPage = new LoginPage ();
 			loginPage.BindingContext = user;
@@ -21,9 +36,8 @@ namespace Talker
 		protected override void OnStart ()
 		{
 			// Handle when your app starts
+			// YIKANG P1: Init the Constants.gMaxObjectID if auto-incremental doesn't work for cloud
 			Debug.WriteLine ("OnStart");
-
-            // YIKANG P1: Init the Constants.gMaxObjectID if auto-incremental doesn't work for cloud
 		}
 
 		protected override void OnSleep ()
@@ -34,7 +48,6 @@ namespace Talker
 		protected override void OnResume ()
 		{
 			// Handle when your app resumes
-
 			// YIKANG P1: Init the Constants.gMaxObjectID if auto-incremental doesn't work for cloud
 		}
 	}

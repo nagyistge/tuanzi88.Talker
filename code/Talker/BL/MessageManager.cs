@@ -10,9 +10,7 @@ namespace Talker.BL
 
 		static MessageManager()
 		{
-			if (mDB == null) {
-				mDB = DataAccessManager.GetMessageDB ();
-			}
+			mDB = DataAccessManager.GetMessageDB ();
 		}
 
 		public static void SaveMessage (Message pItem)
