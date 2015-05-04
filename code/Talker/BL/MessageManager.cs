@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using Talker.DAL;
 
 namespace Talker.BL
-{
+{/*
 	public static class MessageManager
 	{
 		static IMessageDatabase mDB;
 
 		static MessageManager()
 		{
-			mDB = DataAccessManager.GetMessageDB ();
+			mDB = UserService.GetMessageDB ();
 		}
 
 		public static void SaveMessage (Message pItem)
@@ -33,5 +33,6 @@ namespace Talker.BL
 			return mDB.GetMessages (pUserId);
 		}
 	}
+ */   
 }
 

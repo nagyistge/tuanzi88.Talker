@@ -6,6 +6,7 @@ using Talker.DAL;
 
 namespace Talker.DL
 {
+    /*
 	public class LocalDatabase : SQLiteConnection, IMessageDatabase, IUserDatabase
 	{
 		static object mLocker = new object ();
@@ -187,5 +188,6 @@ namespace Talker.DL
 
 		#endregion
 	}
+    */   
 }
 

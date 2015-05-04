@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Talker.DAL;
+using Newtonsoft.Json;
 
 namespace Talker.BL
 {
@@ -12,26 +13,27 @@ namespace Talker.BL
 
 	public class User : Object 
 	{
-		public string Name { get; set; }
+        [JsonProperty(PropertyName = "name")]
+        public string Name { get; set; }
+
+        [JsonProperty(PropertyName = "password")]
 		public string Password { get; set; }
+
+        //[JsonProperty(PropertyName = "type")]
 		//public UserType Type { get; set; }
 
-		// RULE#3: All function paremeters will start with a "p" as prefix.
-		public User (string pLoginName, string pPassword) //, UserType pType )
+        public User (string pLoginName, string pPassword)//, UserType pType )
 		{
 			this.Name = pLoginName;
 			this.Password = pPassword;
-			//Type = pType;
+			//this.Type = pType;
 		}
 
-		public User()
-		{}
-
-		public void SendMessage( User pReceiver, string pText )
-		{
-			Message one = new Message (this, pReceiver, pText, false);
-			MessageManager.SaveMessage (one);
-		}
+        public User()
+        {
+            this.Name = "";
+            this.Password = "";
+        }
 	}
 }
 

@@ -18,5 +18,9 @@ namespace Talker.BL
 			this.Text = pText;
 			this.HasRead = pHasRead;
 		}
+
+        public Message()
+        {
+        }
 	}
 }

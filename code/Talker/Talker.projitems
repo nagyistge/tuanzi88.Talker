@@ -14,16 +14,16 @@
     <Compile Include="$(MSBuildThisFileDirectory)BL\Object.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)BL\Constants.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DL\SQLite.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DAL\DataAccessManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DL\LocalDatabase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DL\CloudDatabase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)App.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\LoginPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\MessageListPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\MessagePage.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DAL\IDatabase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)BL\MessageManager.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)BL\UserManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DAL\UserService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DAL\MessageService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DAL\DatabaseService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)BL\" />

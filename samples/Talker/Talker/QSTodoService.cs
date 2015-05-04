@@ -39,7 +39,7 @@ namespace Talker
 
         public List<ToDoItem> Items { get; private set;}
 
-        public async Task InitializeStoreAsync()
+        public async Task c()
         {
 			var store = new MobileServiceSQLiteStore(localDbPath);
             store.DefineTable<ToDoItem>();

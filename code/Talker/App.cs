@@ -3,6 +3,7 @@ using System.Diagnostics;
 
 using Xamarin.Forms;
 using Talker.BL;
+using Talker.View;
 
 namespace Talker
 {
@@ -25,7 +26,7 @@ namespace Talker
 			};
 			*/
 
-			var user = new User ("name", "password");
+            var user = new User("name", "password"); //, UserType.Teacher);
 			var loginPage = new LoginPage ();
 			loginPage.BindingContext = user;
 			var mainNav = new NavigationPage (loginPage);

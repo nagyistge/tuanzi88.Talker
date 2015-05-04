@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using Xamarin.Forms;
 
+using Talker.BL;
+using Talker.DAL;
 
-namespace Talker.BL
+
+namespace Talker.View
 {
 	public class LoginPage : ContentPage
 	{
@@ -21,29 +24,11 @@ namespace Talker.BL
 			var passwordEntry = new Entry ();		
 			passwordEntry.SetBinding (Entry.TextProperty, "Password");
 
-			var loginButton = new Button { Text = "Login" };
-			loginButton.Clicked += (sender, e) => 
-			{
-				var one = (User)BindingContext;
-				if( UserManager.IsThisUserExisted(one.Name, one.Password) )
-				{
-					var messagePage = new MessagePage();
-					Navigation.PushAsync(messagePage);
-				}
-				else
-				{
-					one.Name = "";			// YIKANG P2: check how to refresh the page
-					one.Password = "";
-				}
-			};
+            var loginButton = new Button { Text = "Login" };
+            loginButton.Clicked += new EventHandler( LoginButtonClick );
 
-			var registerButton = new Button { Text = "Register" };
-			registerButton.Clicked += (sender, e) => 
-			{
-				// YIKANG P1: register name and password to user
-				var one = (User)BindingContext;
-				UserManager.SaveUser(one);
-			};
+            var registerButton = new Button { Text = "Register" };
+            registerButton.Clicked += new EventHandler (RegisterButtonClick);
 
 			Content = new StackLayout {
 				VerticalOptions = LayoutOptions.StartAndExpand,
@@ -55,6 +40,47 @@ namespace Talker.BL
 				}
 			};
 		}
+
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+
+            await UserService.Default.InitializeStoreAsync();
+            await UserService.Default.RefreshDataAsync();
+        }
+
+        protected async void LoginButtonClick (object sender, EventArgs e)
+        {
+            var one = (User)BindingContext;
+            var user = UserService.Default.GetUser (one.Name, one.Password);
+
+            if (user != null) 
+            {
+                Console.WriteLine ("Get User");
+                var messagePage = new MessagePage();
+                await Navigation.PushAsync(messagePage);
+            }
+
+            /*          var one = (User)BindingContext;
+            if( UserManager.IsThisUserExisted(one.Name, one.Password) )
+            {
+                var messagePage = new MessagePage();
+                Navigation.PushAsync(messagePage);
+            }
+            else
+            {
+                one.Name = "";          // YIKANG P2: check how to refresh the page
+                one.Password = "";
+            }
+            */
+        }
+
+        protected async void RegisterButtonClick (object sender, EventArgs e)
+        {
+            // YIKANG P1: register name and password to user
+            var one = (User)BindingContext;
+            await UserService.Default.InsertUserAsync(one);
+        }
 	}
 }
 
