@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using Talker.BL;
 using Talker.DL;
 
+using System.Threading.Tasks;
+
 /* 
  * Note: 
  * Talker.DAL are the interface between business layer and Data layer,
@@ -26,6 +28,8 @@ namespace Talker.DAL
 		User GetSender (int pMessageId);
 		User GetReceiver (int pMessageId);
 		User GetUser (int pUserId);
+
+		Task<User> GetUser (string pName, string pPassword);
 	}
 }
 

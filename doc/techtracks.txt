@@ -1,0 +1,43 @@
+TECH TRACKS
+
+- About why cannot add component and project references in Xamarin's Shared Project
+http://stackoverflow.com/questions/26317963/add-project-references-in-xamarins-shared-project
+http://stackoverflow.com/questions/24801773/adding-a-xamarin-component-to-shared-code
+A Shared Project does not get compiled on its own, it exists purely as a grouping of source code files that can be included in other projects. When referenced by another project, the code is effectively compiled as part of that project. Shared Projects cannot reference any other project type (including other Shared Projects).
+
+
+- How to add a component
+http://developer.xamarin.com/guides/cross-platform/application_fundamentals/components_walkthrough/
+
+
+- How to include a NuGet in your project
+http://developer.xamarin.com/guides/cross-platform/application_fundamentals/nuget_walkthrough/
+
+
+- How to use a .NET client for Azure Mobile Services
+http://azure.microsoft.com/en-us/documentation/articles/mobile-services-windows-dotnet-how-to-use-client-library/
+
+
+- How to create a table in Azure
+https://msdn.microsoft.com/library/azure/jj193162.aspx
+
+
+- Why cannot compile with async keyword
+https://msdn.microsoft.com/en-us/library/hh524395.aspx
+
+
+- About Async and Await
+http://blog.stephencleary.com/2012/02/async-and-await.html
+
+
+- Blogs about C# and .Net
+http://codeblog.jonskeet.uk
+http://blogs.msdn.com/b/pfxteam/
+
+
+- How to properly sync Xamarin.iOS Sqlite using Azure Mobile Services
+http://stackoverflow.com/questions/26939667/how-to-properly-sync-xamarin-ios-sqlite-using-azure-mobile-services
+
+
+- Using offline data sync in Mobile Services
+http://azure.microsoft.com/en-us/documentation/articles/mobile-services-xamarin-ios-get-started-offline-data/

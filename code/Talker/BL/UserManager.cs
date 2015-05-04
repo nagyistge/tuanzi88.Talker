@@ -1,32 +1,22 @@
 ﻿using System;
+using System.Collections.Generic;
 using Talker.DAL;
+using System.Threading.Tasks;
 
 namespace Talker.BL
 {
-	public static class UserManager
+	public static class UserLocalManager
 	{
-		static readonly IUserDatabase mDB;
+		static readonly IUserDatabase mDB = null;
 
-		static UserManager ()
+        static UserLocalManager ()
 		{
-			mDB = DataAccessManager.GetUserDB ();
+			if (mDB == null) {
+				mDB = DataAccessManager.GetUserDB (false);
+			}
 		}
 
-		public static bool IsThisUserExisted (string pName, string pPassword)
-		{
-			return mDB.IsThisUserExisted (pName, pPassword);
-		}
 
-		public static void SaveUser (User pUser)
-		{
-			mDB.SaveUser (pUser);
-		}
-
-		public static void SaveUser (string pName, string pPassword)
-		{
-			User one = new User (pName, pPassword);
-			mDB.SaveUser (one);
-		}
 	}
 }
 
