@@ -49,3 +49,7 @@ http://azure.microsoft.com/en-us/documentation/articles/mobile-services-xamarin-
 
 - Controls of Xamarin forms
 https://visualstudiomagazine.com/articles/2015/03/01/everyone-gets-xaml-with-xamarinforms.aspx
+
+
+- What is rebase
+https://github.com/edx/edx-platform/wiki/How-to-Rebase-a-Pull-Request
