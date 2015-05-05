@@ -1,0 +1,25 @@
+
+———————————————————
+RULES
+———————————————————
+
+
+CODE FORMAT
+- Set to Microsoft Visual Studio style.  (Xamarin / Preferences / Source Code / Code formatting / C# source code)
+
+
+CODE ORGANIZATION
+- Using #region and #endregion to scope code.   Need to turn on code folding manually.  (Xamarin / Preferences / Text Editor / General)
+- In a class, the sequence of elements from top to bottom is:  member / property / constructor / public methods / private and protected methods
+
+
+NAME STYLE
+- Folders and Files (excepting the external files)'s names start with capital case letters.  e.g. Talker.iOS / Constants.cs
+- Global parameters start with "g" prefix.  e.g.  gMaxValue
+- Class members start with "m" prefix.   e.g.  mName
+- Function parameters start with "p" prefix.   e.g. pTime
+- Function local variable start with lower case letter.  e.g. markName
+- Class and function name start with capital case letter.  e.g.  class Human / void RunFaster()
+
+
+
