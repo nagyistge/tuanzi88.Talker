@@ -15,7 +15,7 @@ namespace Talker.DL
 {
     public class UserService : BaseService, IUserService
     {
-        protected static UserService mInstance = new UserService();
+        private static UserService mInstance = new UserService();
         private IMobileServiceSyncTable<User> mUserTable;
 
         private UserService ()
@@ -28,7 +28,7 @@ namespace Talker.DL
             mUserTable = mClient.GetSyncTable<User>();
 		}
 
-        public static UserService Default
+        public static UserService Instance
         {
             get { 
                 return mInstance;
@@ -53,13 +53,10 @@ namespace Talker.DL
         {
             try {
                 // update the local store
-                // all operations on todoTable use the local database, call SyncAsync to send changes
+                // all operations on userTable use the local database, call SyncAsync to send changes
                 await SyncAsync();                          
 
-                // This code refreshes the entries in the list view by querying the local TodoItems table.
-                // The query excludes completed TodoItems
-                //UserList = await mUserTable
-                //    .Where (user => user.Complete == false).ToListAsync ();
+                // This code refreshes the entries in the list view by querying the local table.
                 UserList = await mUserTable.ToListAsync ();
                 
             } catch (MobileServiceInvalidOperationException e) {
@@ -70,6 +67,7 @@ namespace Talker.DL
             return UserList;
         }
 
+        // YIKANG P2: Need to check the insert conflict
         public async Task InsertUserAsync (User pUser)
         {
             try {

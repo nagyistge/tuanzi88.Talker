@@ -19,10 +19,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)VL\LoginPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)VL\MessageListPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)VL\MessagePage.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)BL\MessageService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)BL\IUserService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DL\UserService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)BL\IBaseService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)BL\IMessageService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DL\MessageService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)BL\" />

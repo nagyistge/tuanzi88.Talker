@@ -13,7 +13,7 @@ namespace Talker
 	{
 		public App ()
 		{
-            IUserService userService = (IUserService)UserService.Default;
+            IUserService userService = (IUserService)UserService.Instance;
             var user = new User("name", "password", "Student"); 
             var loginPage = new LoginPage (userService);
 			loginPage.BindingContext = user;
