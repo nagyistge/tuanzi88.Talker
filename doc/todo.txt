@@ -8,6 +8,26 @@ UI
 http://developer.xamarin.com/guides/cross-platform/xamarin-forms/Xaml-for-Xamarin-forms/
 
 
+- Message Centre (too much convenient to communicate between components)
+http://developer.xamarin.com/guides/cross-platform/xamarin-forms/messaging-center/
+
+
+- Dependancy Service (customise platform feature)
+http://developer.xamarin.com/guides/cross-platform/xamarin-forms/dependency-service/
+
+
+- Understand page / layout / view / cell
+http://developer.xamarin.com/guides/cross-platform/xamarin-forms/controls/
+
+
+- Localisation
+http://developer.xamarin.com/guides/cross-platform/xamarin-forms/localization/
+
+
+- Unit test and test cloud
+http://developer.xamarin.com/guides/cross-platform/xamarin-forms/uitest-and-test-cloud/
+
 DATABASE
-- Offline Mobile Database
+- [DONE] Offline Mobile Database 
 http://azure.microsoft.com/en-us/documentation/articles/mobile-services-xamarin-ios-get-started-offline-data/
+
