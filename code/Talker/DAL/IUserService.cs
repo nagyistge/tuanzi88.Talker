@@ -2,7 +2,9 @@
 using System.Threading.Tasks;
 using System.Collections.Generic;
 
-namespace Talker.BL
+using Talker.BL;
+
+namespace Talker.DAL
 {
     public interface IUserService : IBaseService
     {
@@ -10,7 +12,7 @@ namespace Talker.BL
         Task SyncAsync();
         Task<List<User>> RefreshDataAsync();
         Task InsertUserAsync(User pUser);
-        Task<User> GetUser(string pName, string pPassword, string pType);
+        Task<User> GetUser(string pName, string pPassword, UserType pType);
     }
 }
 

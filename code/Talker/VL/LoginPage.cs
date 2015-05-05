@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using Xamarin.Forms;
 using System.Threading.Tasks;
 
 using Talker.BL;
+using Talker.DAL;
 
 namespace Talker.VL
 {
@@ -16,11 +15,11 @@ namespace Talker.VL
         {
             // Init
             mUserService = pUserService;
-            this.SetBinding(ContentPage.TitleProperty, "Name");
+            this.SetBinding(ContentPage.TitleProperty, "Login");
             NavigationPage.SetHasNavigationBar(this, true);
 
             // Name
-            var nameLabel = new Label { XAlign = TextAlignment.Center, Text = "Name" };
+            var nameLabel = new Label { /*XAlign = TextAlignment.Center,*/ Text = "Name" };
             var nameEntry = new Entry();		
             nameEntry.SetBinding(Entry.TextProperty, "Name");
 
@@ -33,13 +32,14 @@ namespace Talker.VL
             var typeLabel = new Label { Text = "Type" };
             var picker = new Picker
             {
-                Title = "Student",
+                    Title = "Select a type",       
                 VerticalOptions = LayoutOptions.CenterAndExpand
             };
             picker.Items.Add(UserType.Admin.ToString());
-            picker.Items.Add(UserType.Student.ToString());
             picker.Items.Add(UserType.Teacher.ToString());
-            picker.SetBinding(Picker.SelectedIndexProperty, "Student");
+            picker.Items.Add(UserType.Student.ToString());
+            picker.SetBinding(Picker.SelectedIndexProperty, "Type");
+            picker.SelectedIndexChanged += new EventHandler(UserTypeChange);
 
             // Login
             var loginButton = new Button { Text = "Login" };
@@ -75,8 +75,8 @@ namespace Talker.VL
         {
             await mUserService.RefreshDataAsync();
 
-            var one = (User)BindingContext;
-            var user = mUserService.GetUser(one.Name, one.Password, one.Type);
+            User one = (User)BindingContext;
+            User user = await mUserService.GetUser(one.Name, one.Password, one.Type);
 
             if (user != null)
             {
@@ -89,9 +89,25 @@ namespace Talker.VL
         protected async void RegisterButtonClick(object sender, EventArgs e)
         {
             // YIKANG P1: register name and password to user
-            var one = (User)BindingContext;
+            User one = (User)BindingContext;
             await mUserService.InsertUserAsync(one);
         }
+
+        protected void UserTypeChange(object sender, EventArgs e)
+        {
+            Picker picker = (Picker)sender;
+            if (picker == null)
+                return;
+            
+            Console.WriteLine("Type selection changes to " + picker.SelectedIndex.ToString());
+
+            User user = (User)picker.BindingContext;
+            UserType newType = (UserType)picker.SelectedIndex;
+            user.Type = newType;
+            picker.BindingContext = user;
+        }
+
+
     }
 }
 

@@ -1,6 +1,8 @@
 ﻿using System;
 using Xamarin.Forms;
+
 using Talker.BL;
+using Talker.DAL;
 
 namespace Talker.VL
 {

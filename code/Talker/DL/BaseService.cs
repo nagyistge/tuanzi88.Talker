@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using Microsoft.WindowsAzure.MobileServices;
 using Talker.BL;
+using Talker.DAL;
 
 namespace Talker.DL
 {

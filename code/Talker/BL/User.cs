@@ -19,9 +19,9 @@ namespace Talker.BL
 		public string Password { get; set; }
 
         [JsonProperty(PropertyName = "type")]
-		public string Type { get; set; }
+        public UserType Type { get; set; }
 
-        public User (string pLoginName, string pPassword, string pType )
+        public User (string pLoginName, string pPassword, UserType pType )
 		{
 			this.Name = pLoginName;
 			this.Password = pPassword;
@@ -32,7 +32,7 @@ namespace Talker.BL
         {
             this.Name = "";
             this.Password = "";
-            this.Type = "Student";
+            this.Type = UserType.Student;
         }
 	}
 }

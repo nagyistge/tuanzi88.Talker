@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace Talker.BL
+namespace Talker.DAL
 {
     public interface IBaseService
     {

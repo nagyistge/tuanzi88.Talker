@@ -11,12 +11,6 @@ namespace Talker.DL
     public class DatabaseService
     {
         static DatabaseService mInstance = new DatabaseService();
-
-        // YIKANG P2: move below constants to Constants class
-        const string applicationURL = @"https://talker.azure-mobile.net/";
-        const string applicationKey = @"tHduMiKBYdscDusiKwEQHzOiPmQHQj75";
-        const string localDbPath    = "localstore.db";
-
         private MobileServiceClient mClient;
         private MobileServiceSQLiteStore mLocalStore;
 
@@ -27,11 +21,11 @@ namespace Talker.DL
 
             // Initialize the Mobile Service client with your URL and key
             if (mClient == null)
-                mClient = new MobileServiceClient (applicationURL, applicationKey);
+                mClient = new MobileServiceClient (Constants.gCloudApplicationURL, Constants.gCloudApplicationKey);
 
             // Initialize the local database with database path
             if (mLocalStore == null)
-                mLocalStore = new MobileServiceSQLiteStore(localDbPath);
+                mLocalStore = new MobileServiceSQLiteStore(Constants.gLocalDBPath);
 
             // Initial SyncContext
             //mClient.SyncContext.InitializeAsync(mLocalStore);  // YIKANG P1: why cannot init it here?

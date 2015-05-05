@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using Talker.DL;
 
-namespace Talker.BL
+using Talker.BL;
+
+namespace Talker.DAL
 {
     public interface IMessageService : IBaseService
 	{

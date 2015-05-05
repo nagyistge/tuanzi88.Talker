@@ -6,6 +6,7 @@ using Microsoft.WindowsAzure.MobileServices.Sync;
 using Microsoft.WindowsAzure.MobileServices.SQLiteStore;
 
 using Talker.BL;
+using Talker.DAL;
 
 /*
  * Note:
@@ -80,7 +81,7 @@ namespace Talker.DL
             }
         }
 
-        public async Task<User> GetUser (string pName, string pPassword, string pType)
+        public async Task<User> GetUser (string pName, string pPassword, UserType pType)
         {
             await RefreshDataAsync();
 

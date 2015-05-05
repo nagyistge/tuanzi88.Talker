@@ -5,6 +5,7 @@ using Xamarin.Forms;
 using System.Threading.Tasks;
 
 using Talker.BL;
+using Talker.DAL;
 
 namespace Talker.VL
 {

@@ -6,6 +6,7 @@ using Microsoft.WindowsAzure.MobileServices.Sync;
 using Microsoft.WindowsAzure.MobileServices.SQLiteStore;
 
 using Talker.BL;
+using Talker.DAL;
 
 namespace Talker.DL
 {
