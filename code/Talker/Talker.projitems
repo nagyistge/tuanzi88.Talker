@@ -12,22 +12,22 @@
     <Compile Include="$(MSBuildThisFileDirectory)BL\User.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)BL\Message.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)BL\Object.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)BL\Constants.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DL\SQLite.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DAL\DataAccessManager.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DL\LocalDatabase.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DL\CloudDatabase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)App.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Views\LoginPage.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Views\MessageListPage.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Views\MessagePage.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DAL\IDatabase.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)BL\MessageManager.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)BL\UserManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DL\DatabaseService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DL\BaseService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)VL\LoginPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)VL\MessageListPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)VL\MessagePage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DL\UserService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DL\MessageService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DL\Constants.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DAL\IBaseService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DAL\IMessageService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DAL\IUserService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)BL\" />
-    <Folder Include="$(MSBuildThisFileDirectory)DAL\" />
     <Folder Include="$(MSBuildThisFileDirectory)DL\" />
+    <Folder Include="$(MSBuildThisFileDirectory)DAL\" />
   </ItemGroup>
 </Project>

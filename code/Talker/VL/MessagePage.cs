@@ -1,7 +1,10 @@
 ﻿using System;
 using Xamarin.Forms;
 
-namespace Talker
+using Talker.BL;
+using Talker.DAL;
+
+namespace Talker.VL
 {
 	public class MessagePage : ContentPage
 	{

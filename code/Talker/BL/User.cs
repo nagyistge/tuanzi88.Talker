@@ -1,37 +1,39 @@
 ﻿using System;
 using System.Collections.Generic;
-using Talker.DAL;
+using Newtonsoft.Json;
 
 namespace Talker.BL
 {
 	public enum UserType {
-		None = 0,
-		Teacher = 1,
-		Student = 2,
+		Admin,
+		Teacher,
+		Student,
 	}
 
 	public class User : Object 
 	{
-		public string Name { get; set; }
-		public string Password { get; set; }
-		//public UserType Type { get; set; }
+        [JsonProperty(PropertyName = "name")]
+        public string Name { get; set; }
 
-		// RULE#3: All function paremeters will start with a "p" as prefix.
-		public User (string pLoginName, string pPassword) //, UserType pType )
+        [JsonProperty(PropertyName = "password")]
+		public string Password { get; set; }
+
+        [JsonProperty(PropertyName = "type")]
+        public UserType Type { get; set; }
+
+        public User (string pLoginName, string pPassword, UserType pType )
 		{
 			this.Name = pLoginName;
 			this.Password = pPassword;
-			//Type = pType;
+			this.Type = pType;
 		}
 
-		public User()
-		{}
-
-		public void SendMessage( User pReceiver, string pText )
-		{
-			Message one = new Message (this, pReceiver, pText, false);
-			MessageManager.SaveMessage (one);
-		}
+        public User()
+        {
+            this.Name = "";
+            this.Password = "";
+            this.Type = UserType.Student;
+        }
 	}
 }
 

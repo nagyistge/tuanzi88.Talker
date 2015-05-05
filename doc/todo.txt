@@ -1,4 +1,8 @@
 
+———————————————————
+TODO
+———————————————————
+
 UI
 - XAML & MVVM
 http://developer.xamarin.com/guides/cross-platform/xamarin-forms/Xaml-for-Xamarin-forms/

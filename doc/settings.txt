@@ -1,9 +1,15 @@
 
-UI
-- XAML & MVVM
-http://developer.xamarin.com/guides/cross-platform/xamarin-forms/Xaml-for-Xamarin-forms/
+———————————————————
+SETTING
+———————————————————
 
 
-DATABASE
-- Offline Mobile Database
-http://azure.microsoft.com/en-us/documentation/articles/mobile-services-xamarin-ios-get-started-offline-data/
+AZURE DATABASE 
+- Mobile service 
+  - name:  Talker.azure-mobile.net
+  - free 20G SQL Server
+  - backend: javascript
+- Mobile service database 
+  - server name:  Talker_db
+  - login name: talker
+  - password: ..abc123
