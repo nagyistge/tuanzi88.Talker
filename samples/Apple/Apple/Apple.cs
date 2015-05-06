@@ -8,7 +8,7 @@ namespace Apple
     {
         public App()
         {
-            MainPage = new ListViewDemoPage{ };
+            MainPage = new GridDemoPage{ };
         }
 
         protected override void OnStart()

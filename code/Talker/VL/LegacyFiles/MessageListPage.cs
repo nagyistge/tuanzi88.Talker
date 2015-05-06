@@ -9,7 +9,7 @@ using Talker.DAL;
 
 namespace Talker.VL
 {
-    public class MessageListPage : ContentPage
+    public class MessageListPage_Legacy : ContentPage
 	{
         /*
         ListView mListView;

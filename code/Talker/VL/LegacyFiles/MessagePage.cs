@@ -6,9 +6,9 @@ using Talker.DAL;
 
 namespace Talker.VL
 {
-	public class MessagePage : ContentPage
+	public class MessagePage_Legacy : ContentPage
 	{
-		public MessagePage ()
+        public MessagePage_Legacy ()
 		{
 			NavigationPage.SetHasNavigationBar (this, true);
 

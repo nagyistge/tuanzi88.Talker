@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Talker.VL.LoginPage">
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness" iOS="0, 20, 0, 0" />
+    </ContentPage.Padding>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="10" />
+        </Grid.ColumnDefinitions>
+
+        <Label Text="Name" Grid.Row="2" Grid.Column="1" />
+        <Entry x:Name="nameEntry" Text="Input account" Grid.Row="2" Grid.Column="2" />
+
+        <Label Text="Password" Grid.Row="3" Grid.Column="1" />
+        <Entry x:Name="passwordEntry" Text="Input password" Grid.Row="3" Grid.Column="2" />
+
+        <Label Text="Type" Grid.Row="4" Grid.Column="1" />
+        <Picker x:Name="typePicker" Grid.Row="4" Grid.Column="2" SelectedIndexChanged="OnUserTypeChanged"/>
+
+        <Button Text="Login" Grid.Row="6" Grid.ColumnSpan="4" Clicked="OnLoginButtonClicked" />
+        <Button Text="Register" Grid.Row="8" Grid.ColumnSpan="4" Clicked="OnRegisterButtonClicked" />
+    </Grid>
+</ContentPage>

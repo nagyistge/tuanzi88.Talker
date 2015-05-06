@@ -7,11 +7,11 @@ using Talker.DAL;
 
 namespace Talker.VL
 {
-    public class LoginPage : ContentPage
+    public class LoginPage_Legacy : ContentPage
     {
         IUserService mUserService;
 
-        public LoginPage(IUserService pUserService)
+        public LoginPage_Legacy(IUserService pUserService)
         {
             // Init
             mUserService = pUserService;
@@ -81,8 +81,8 @@ namespace Talker.VL
             if (user != null)
             {
                 Console.WriteLine("Get User");
-                var messagePage = new MessagePage();
-                await Navigation.PushAsync(messagePage);
+                var messageListPage = new MessageListPage();
+                await Navigation.PushAsync(messageListPage);
             }
         }
 
@@ -106,8 +106,6 @@ namespace Talker.VL
             user.Type = newType;
             picker.BindingContext = user;
         }
-
-
     }
 }
 

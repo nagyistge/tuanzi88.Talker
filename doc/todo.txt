@@ -27,6 +27,8 @@ http://developer.xamarin.com/guides/cross-platform/xamarin-forms/localization/
 - Unit test and test cloud
 http://developer.xamarin.com/guides/cross-platform/xamarin-forms/uitest-and-test-cloud/
 
+
+
 DATABASE
 - [DONE] Offline Mobile Database 
 http://azure.microsoft.com/en-us/documentation/articles/mobile-services-xamarin-ios-get-started-offline-data/
