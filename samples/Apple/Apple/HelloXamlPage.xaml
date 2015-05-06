@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Apple.HelloXamlPage" Title="Hello Xaml" Padding="10, 50, 10, 10">
+    <StackLayout>
+        <Label Text="Hello, XAML!" VerticalOptions="Start" XAlign="Center" Rotation="-15" IsVisible="true" FontSize="Large" FontAttributes="Bold" TextColor="#CF3" />
+        <Label Text="&amp;#x201C;Hello, XAML!&amp;#x201D;" />
+    </StackLayout>
+</ContentPage>
