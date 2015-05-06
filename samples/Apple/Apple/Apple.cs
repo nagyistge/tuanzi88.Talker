@@ -8,7 +8,7 @@ namespace Apple
     {
         public App()
         {
-            MainPage = new RelativeLayoutPage{ };
+            MainPage = new ListViewDemoPage{ };
         }
 
         protected override void OnStart()
