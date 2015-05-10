@@ -1,6 +1,28 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Talker.VL.MessageListPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <OnPlatform x:Key="boxSize" x:TypeArguments="x:Double" iOS="50" Android="50" WinPhone="75" />
+            <OnPlatform x:Key="rowHeight" x:TypeArguments="x:Int32" iOS="60" Android="60" WinPhone="85" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <StackLayout>
-        <Label Text="Hello, Here list all messages!" VerticalOptions="CenterAndExpand" XAlign="Center" YAlign="Center" Rotation="-15" IsVisible="true" FontSize="Large" FontAttributes="Bold" TextColor="#CF3" />
+        <ListView x:Name="messageListView" RowHeight="40">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <ViewCell.View>
+                            <StackLayout Padding="5, 5, 0, 5" Orientation="Horizontal" Spacing="15">
+                                <BoxView WidthRequest="40" HeightRequest="40" />
+                                <StackLayout Padding="5, 0, 0, 0" VerticalOptions="Center">
+                                    <Label Text="{Binding Text}" FontAttributes="Bold" FontSize="Medium" />
+                                </StackLayout>
+                            </StackLayout>
+                        </ViewCell.View>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Button Text="Create Message" Clicked="OnSendMessageClicked" />
     </StackLayout>
 </ContentPage>

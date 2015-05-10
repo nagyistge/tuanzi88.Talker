@@ -14,9 +14,12 @@ namespace Talker
 	{
 		public App ()
 		{
-            IUserService userService = (IUserService)UserService.Instance;
-            var user = new User("name", "password", UserType.Admin); 
-            var loginPage = new LoginPage (userService);
+            // Init global manager
+            GlobalManager.Instance.Init(UserService.Instance, MessageService.Instance);
+
+            // Init login page
+            var user = new User("apple", "apple", UserType.Teacher); 
+            var loginPage = new LoginPage ();
 			loginPage.BindingContext = user;
 			var mainNav = new NavigationPage (loginPage);
 			MainPage = mainNav;

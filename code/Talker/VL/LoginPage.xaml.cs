@@ -9,13 +9,15 @@ namespace Talker.VL
     public partial class LoginPage : ContentPage
     {
         IUserService mUserService;
+        IMessageService mMessageService;
 
-        public LoginPage(IUserService pUserService)
+        public LoginPage()
         {
             InitializeComponent();
 
             // Service
-            mUserService = pUserService;
+            mUserService = GlobalManager.Instance.UserService;
+            mMessageService = GlobalManager.Instance.MessageseService;
 
             // Title
             this.SetBinding(ContentPage.TitleProperty, "Login");
@@ -48,6 +50,15 @@ namespace Talker.VL
             if (user != null)
             {
                 Console.WriteLine("Get User");
+
+                // Init the current user ID
+                GlobalManager.Instance.CurrentUser = user;
+
+                // Init the friends
+                mUserService.InitFriends();
+
+                // Pop messagelist
+                await mMessageService.RefreshDataAsync(user.ID);
                 var messageListPage = new MessageListPage();
                 await Navigation.PushAsync(messageListPage);
             }

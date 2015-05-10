@@ -13,6 +13,7 @@ namespace Talker.DAL
         Task<List<User>> RefreshDataAsync();
         Task InsertUserAsync(User pUser);
         Task<User> GetUser(string pName, string pPassword, UserType pType);
+        void InitFriends();
     }
 }
 
