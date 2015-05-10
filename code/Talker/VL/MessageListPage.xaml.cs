@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 
 using Xamarin.Forms;
+using Talker.BL;
+using Talker.DAL;
 
 namespace Talker.VL
 {
@@ -10,6 +12,20 @@ namespace Talker.VL
         public MessageListPage()
         {
             InitializeComponent();
+        }
+
+        protected async override void OnAppearing()
+        {
+            await GlobalManager.Instance.MessageseService.RefreshDataAsync(GlobalManager.Instance.CurrentUser.ID);
+            messageListView.ItemsSource = GlobalManager.Instance.CurrentMessages;
+
+            base.OnAppearing();
+        }
+
+        private async void OnSendMessageClicked(object sender, EventArgs e)
+        {
+            var newMessagePage = new NewMessagePage();
+            await Navigation.PushAsync(newMessagePage);
         }
     }
 }

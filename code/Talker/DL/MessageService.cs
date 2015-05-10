@@ -34,7 +34,6 @@ namespace Talker.DL
         }
 
         #region IMessageService implementation
-        public List<Message> MessageList { get; private set; }
 
         public async Task SyncAsync()
         {
@@ -48,7 +47,7 @@ namespace Talker.DL
             }
         }
 
-        public async Task<List<Message>> RefreshDataAsync(string pUserID)
+        public async Task RefreshDataAsync(string pReceiverID)
         {
             try 
             {
@@ -57,16 +56,15 @@ namespace Talker.DL
                 await SyncAsync();                          
 
                 // This code refreshes the entries in the list view by querying the local table.
-                MessageList = await mMessageTable
-                    .Where (message => message.SenderID == pUserID).ToListAsync ();
+                GlobalManager.Instance.CurrentMessages.Clear();
+                GlobalManager.Instance.CurrentMessages = await mMessageTable
+                    .Where (message => message.ReceiverID == pReceiverID).ToListAsync ();
+
             } 
             catch (MobileServiceInvalidOperationException e) 
             {
                 Console.Error.WriteLine (@"ERROR {0}", e.Message);
-                return null;
             }
-
-            return MessageList;
         }
 
         public async Task InsertMessageAsync(Message pMessage)
@@ -76,7 +74,7 @@ namespace Talker.DL
                 await mMessageTable.InsertAsync (pMessage); // Insert a new TodoItem into the local database. 
                 await SyncAsync(); // send changes to the mobile service
 
-                MessageList.Add (pMessage); 
+                GlobalManager.Instance.CurrentMessages.Add (pMessage); 
             } 
             catch (MobileServiceInvalidOperationException e) 
             {
@@ -86,7 +84,7 @@ namespace Talker.DL
 
         public async Task DeleteMessage(string pMessageID)
         {
-            foreach (Message one in MessageList)
+            foreach (Message one in GlobalManager.Instance.CurrentMessages)
             {
                 if (one.ID == pMessageID)
                 {
@@ -95,13 +93,12 @@ namespace Talker.DL
                         await mMessageTable.DeleteAsync(one);
                         await SyncAsync();
 
-                        MessageList.Remove(one);
+                        GlobalManager.Instance.CurrentMessages.Remove(one);
                     }
                     catch (MobileServiceInvalidOperationException e) 
                     {
                         Console.Error.WriteLine (@"ERROR {0}", e.Message);
                     }
-                    return;
                 }
             }
         }

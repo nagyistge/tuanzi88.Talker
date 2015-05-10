@@ -27,21 +27,24 @@
     <Compile Include="$(MSBuildThisFileDirectory)VL\MessageListPage.xaml.cs">
       <DependentUpon>MessageListPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)VL\LegacyFiles\MessagePage.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)VL\LegacyFiles\MessageListPage.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)VL\LegacyFiles\LoginPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)VL\NewMessagePage.xaml.cs">
+      <DependentUpon>NewMessagePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)DAL\GlobalManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)BL\" />
     <Folder Include="$(MSBuildThisFileDirectory)DL\" />
     <Folder Include="$(MSBuildThisFileDirectory)DAL\" />
-    <Folder Include="$(MSBuildThisFileDirectory)VL\LegacyFiles\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)VL\LoginPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)VL\MessageListPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)VL\NewMessagePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

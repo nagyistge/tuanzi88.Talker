@@ -36,6 +36,7 @@ namespace Talker.DL
             }
         }
 
+
         #region IUserService implementation
         public List<User> UserList { get; private set; }
 
@@ -91,6 +92,20 @@ namespace Talker.DL
                     return one;
             }
             return null;
+        }
+
+        public void InitFriends()
+        {            
+            if (GlobalManager.Instance.Friends.Count == 0 && GlobalManager.Instance.CurrentUser != null )
+            {
+                foreach (User one in UserList)
+                {
+                    if (one.ID != GlobalManager.Instance.CurrentUser.ID)
+                    {
+                        GlobalManager.Instance.Friends.Add(one);
+                    }
+                }
+            }
         }
         #endregion
 	}
