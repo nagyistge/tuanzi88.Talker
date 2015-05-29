@@ -34,6 +34,8 @@ namespace TalkerService.Security
 
             for (int i = 0; i < pa.Length && i < pb.Length; i++)
             {
+                //Shuran : Bitwise logical OR operation
+                //Reference: https://msdn.microsoft.com/en-us/library/h5f1zzaw.aspx
                 diff |= pa[i] ^ pb[i];
             }
 

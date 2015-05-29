@@ -15,6 +15,8 @@ namespace TalkerService.WebAPIs
 {
     public class RegisterRequestController : ApiController
     {
+        //Shuran: Notice that a pop-out window will still appear in this case to input username and password, just click cancel.
+        //POST api/LoginRequest
         public HttpResponseMessage Post(RegisterRequest pRegisterRequest)
         {
             //Check if the Username is valid
