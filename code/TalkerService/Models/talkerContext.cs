@@ -5,9 +5,9 @@ using Microsoft.WindowsAzure.Mobile.Service;
 using Microsoft.WindowsAzure.Mobile.Service.Tables;
 //using talkerService.DataObjects;
 
-namespace talkerService.Models
+namespace TalkerService.Models
 {
-    public class talkerContext : DbContext
+    public class TalkerContext : DbContext
     {
         // You can add custom code to this file. Changes will not be overwritten.
         // 
@@ -21,7 +21,7 @@ namespace talkerService.Models
         // Web.config, is the same as the service name when hosted in Azure.
         private const string connectionStringName = "Name=MS_TableConnectionString";
 
-        public talkerContext() : base(connectionStringName)
+        public TalkerContext() : base(connectionStringName)
         {
         } 
 
@@ -38,6 +38,10 @@ namespace talkerService.Models
                 new AttributeToColumnAnnotationConvention<TableColumnAttribute, string>(
                     "ServiceTableColumn", (property, attributes) => attributes.Single().ColumnType.ToString()));
         }
+
+        public System.Data.Entity.DbSet<TalkerService.DataObjects.User> Users { get; set; }
+
+        public System.Data.Entity.DbSet<TalkerService.DataObjects.Message> Messages { get; set; }
     }
 
 }

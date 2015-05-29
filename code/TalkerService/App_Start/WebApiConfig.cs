@@ -4,9 +4,9 @@ using System.Data.Entity;
 using System.Web.Http;
 using Microsoft.WindowsAzure.Mobile.Service;
 //using talkerService.DataObjects;
-using talkerService.Models;
+using TalkerService.Models;
 
-namespace talkerService
+namespace TalkerService
 {
     public static class WebApiConfig
     {
@@ -23,12 +23,17 @@ namespace talkerService
             // config.IncludeErrorDetailPolicy = IncludeErrorDetailPolicy.Always;
             
             Database.SetInitializer(new talkerInitializer());
+
+            //Sample Generating in scenarios where there are referencing loops
+            //Shuran: http://stackoverflow.com/questions/15029576/samples-not-working-for-web-api-help-page-when-using-an-entity-framework-complex
+            config.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Serialize;
+            config.Formatters.JsonFormatter.SerializerSettings.PreserveReferencesHandling = Newtonsoft.Json.PreserveReferencesHandling.Objects;
         }
     }
 
-    public class talkerInitializer : ClearDatabaseSchemaIfModelChanges<talkerContext>
+    public class talkerInitializer : ClearDatabaseSchemaIfModelChanges<TalkerContext>
     {
-        protected override void Seed(talkerContext context)
+        protected override void Seed(TalkerContext context)
         {
             /*
             List<TodoItem> todoItems = new List<TodoItem>
@@ -42,8 +47,9 @@ namespace talkerService
                 context.Set<TodoItem>().Add(todoItem);
             }
 
-            base.Seed(context);
             */
+            base.Seed(context);
+            
         }
     }
 }
