@@ -11,8 +11,8 @@ namespace TalkerService.DataObjects
     public class User : EntityData
     {
         public string mName { get; set; }
-        public string mSalt { get; set; }
-        public string mSaltedAndHashedPd { get; set; }
+        public byte[] mSalt { get; set; }
+        public byte[] mSaltedAndHashedPd { get; set; }
 
         public string mUserType { get; set; }
 
