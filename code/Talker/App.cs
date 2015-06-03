@@ -8,6 +8,37 @@ using Talker.DL;
 using Talker.DAL;
 using Talker.VL;
 
+
+/*
+ * Yikang TODO:
+ * 
+ * (The reason to write the design for MVVM projects structure here is 
+ * the uml gen website doesn't load the diagram properly)
+ * 
+ * Talker.iOS / Talker.Andriod
+ * App(AL) / View(VL) / ViewModel(VML) / Model(ML) / DatabaseAccessLayer(DAL) / Database Layer(DL)
+ * 
+ * Talker.iOS / Talker.Andriod
+ *   - AL
+ * 
+ * AL
+ *   - VL
+ *   - VML
+ *   - DAL
+ *   - DL
+ * 
+ * VML
+ *   - ML
+ * 
+ * DAL
+ *   - ML
+ * 
+ * DL
+ *   - ML
+ *   - DAL
+ */
+
+
 namespace Talker
 {
 	public class App : Application
