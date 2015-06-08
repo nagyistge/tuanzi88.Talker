@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Threading.Tasks;
-using System.Collections.Generic;
 
 using Talker.ML;
 
 namespace Talker.DAL
 {
-    public interface IMessageService : IBaseService
+    public interface IMessageDB
 	{
         Task SyncAsync();
         Task RefreshDataAsync(string pUserID);

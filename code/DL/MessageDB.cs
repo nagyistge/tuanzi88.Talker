@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using Microsoft.WindowsAzure.MobileServices;
@@ -10,22 +11,22 @@ using Talker.DAL;
 
 namespace Talker.DL
 {
-    public class MessageService : BaseService, IMessageService
+    public class MessageDB : IMessageDB
     {
-        private static MessageService mInstance = new MessageService();
+        private static MessageDB mInstance = new MessageDB();
         private IMobileServiceSyncTable<Message> mMessageTable;
 
-        public MessageService()
+        public MessageDB()
             :base()
         {
             // Define table for local db
-            DatabaseService.Instance.LocalStore.DefineTable<Message>();
+            DatabaseService.Instance.LocalDB.DefineTable<Message>();
 
             // Create user table for local db
-            mMessageTable = mClient.GetSyncTable<Message>();
+            mMessageTable = DatabaseService.Instance.CloudDB.GetSyncTable<Message>();
         }
 
-        public static MessageService Instance
+        public static MessageDB Instance
         {
             get 
             { 
@@ -39,11 +40,11 @@ namespace Talker.DL
         {
             try 
             {
-                await mClient.SyncContext.PushAsync();
+                await DatabaseService.Instance.CloudDB.SyncContext.PushAsync();
                 await mMessageTable.PullAsync("allMessages", mMessageTable.CreateQuery()); // query ID is used for incremental sync
             }
             catch (MobileServiceInvalidOperationException e) {
-                //Console.Error.WriteLine(@"Sync Failed: {0}", e.Message);
+                Debug.WriteLine(@"Sync Failed: {0}", e.Message);
             }
         }
 
@@ -63,7 +64,7 @@ namespace Talker.DL
             } 
             catch (MobileServiceInvalidOperationException e) 
             {
-                //Console.Error.WriteLine (@"ERROR {0}", e.Message);
+                Debug.WriteLine (@"ERROR {0}", e.Message);
             }
         }
 
@@ -78,7 +79,7 @@ namespace Talker.DL
             } 
             catch (MobileServiceInvalidOperationException e) 
             {
-                //Console.Error.WriteLine (@"ERROR {0}", e.Message);
+                Debug.WriteLine (@"ERROR {0}", e.Message);
             }
         }
 
@@ -97,7 +98,7 @@ namespace Talker.DL
                     }
                     catch (MobileServiceInvalidOperationException e) 
                     {
-                        //Console.Error.WriteLine (@"ERROR {0}", e.Message);
+                        Debug.WriteLine (@"ERROR {0}", e.Message);
                     }
                 }
             }

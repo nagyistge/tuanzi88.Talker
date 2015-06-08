@@ -9,7 +9,7 @@ namespace Talker
 {
     public partial class NewMessagePage : ContentPage
     {
-        IMessageService mMessageService;
+        IMessageDB mMessageService;
 
         public NewMessagePage()
         {

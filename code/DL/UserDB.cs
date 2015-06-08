@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using Microsoft.WindowsAzure.MobileServices;
@@ -14,22 +15,22 @@ using Talker.DAL;
  */
 namespace Talker.DL
 {
-    public class UserService : BaseService, IUserService
+    public class UserDB : IUserDB
     {
-        private static UserService mInstance = new UserService();
+        private static UserDB mInstance = new UserDB();
         private IMobileServiceSyncTable<User> mUserTable;
 
-        private UserService ()
+        private UserDB ()
             : base()
 		{
             // Define table for local db
-            DatabaseService.Instance.LocalStore.DefineTable<User>();
+            DatabaseService.Instance.LocalDB.DefineTable<User>();
 
             // Create user table for local db
-            mUserTable = mClient.GetSyncTable<User>();
+            mUserTable = DatabaseService.Instance.CloudDB.GetSyncTable<User>();
 		}
 
-        public static UserService Instance
+        public static UserDB Instance
         {
             get { 
                 return mInstance;
@@ -43,11 +44,11 @@ namespace Talker.DL
         public async Task SyncAsync()
         {
             try {
-                await mClient.SyncContext.PushAsync();
+                await DatabaseService.Instance.CloudDB.SyncContext.PushAsync();
                 await mUserTable.PullAsync("allUsers", mUserTable.CreateQuery()); // query ID is used for incremental sync
             }
             catch (MobileServiceInvalidOperationException e) {
-                //Console.Error.WriteLine(@"Sync Failed: {0}", e.Message);
+                Debug.WriteLine (@"Sync Failed: {0}", e.Message);
             }
         }
 
@@ -62,7 +63,7 @@ namespace Talker.DL
                 UserList = await mUserTable.ToListAsync ();
                 
             } catch (MobileServiceInvalidOperationException e) {
-                //Console.Error.WriteLine (@"ERROR {0}", e.Message);
+                Debug.WriteLine (@"ERROR {0}", e.Message);
                 return null;
             }
 
@@ -78,7 +79,7 @@ namespace Talker.DL
 
                 UserList.Add (pUser); 
             } catch (MobileServiceInvalidOperationException e) {
-                //Console.Error.WriteLine (@"ERROR {0}", e.Message);
+                Debug.WriteLine (@"ERROR {0}", e.Message);
             }
         }
 

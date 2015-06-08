@@ -50,7 +50,7 @@ namespace Talker
 		public App ()
 		{
             // Init global manager
-            GlobalManager.Instance.Init(UserService.Instance, MessageService.Instance);
+            GlobalManager.Instance.Init(UserDB.Instance, MessageDB.Instance);
 
             // Init login page
             var user = new User("apple", "apple", UserType.Teacher); 
@@ -64,6 +64,8 @@ namespace Talker
 		{
 			// Handle when your app starts
 			Debug.WriteLine ("OnStart");
+
+            DatabaseService.InitCloundDB();
 		}
 
 		protected override void OnSleep ()

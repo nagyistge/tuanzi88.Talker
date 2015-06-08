@@ -11,6 +11,7 @@ using Talker;
 
 namespace Talker.iOS
 {
+    // YIKANG P2: Try Andriod project
 	[Register ("AppDelegate")]
 	public partial class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDelegate
 	{

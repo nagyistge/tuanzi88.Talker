@@ -32,9 +32,8 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GlobalManager.cs" />
-    <Compile Include="IBaseService.cs" />
-    <Compile Include="IMessageService.cs" />
-    <Compile Include="IUserService.cs" />
+    <Compile Include="IMessageDB.cs" />
+    <Compile Include="IUserDB.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>

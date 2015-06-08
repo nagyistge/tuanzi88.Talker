@@ -6,7 +6,7 @@ using Talker.ML;
 
 namespace Talker.DAL
 {
-    public interface IUserService : IBaseService
+    public interface IUserDB
     {
         List<User> UserList { get; }
         Task SyncAsync();

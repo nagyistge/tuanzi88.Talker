@@ -8,8 +8,8 @@ namespace Talker.VL
 {
     public partial class LoginPage : ContentPage
     {
-        IUserService mUserService;
-        IMessageService mMessageService;
+        IUserDB mUserService;
+        IMessageDB mMessageService;
 
         public LoginPage()
         {
@@ -36,7 +36,6 @@ namespace Talker.VL
         {
             base.OnAppearing();
 
-            await mUserService.InitializeStoreAsync();
             await mUserService.RefreshDataAsync();
         }
 
