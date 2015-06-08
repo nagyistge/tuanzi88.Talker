@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 
-using Xamarin.Forms;   // YIKANG P1: Check whether this is necessary to contain here, else delete the package.
+using Xamarin.Forms; 
 
 using Talker.ML;
 using Talker.DL;
