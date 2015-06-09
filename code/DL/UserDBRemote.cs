@@ -5,6 +5,7 @@ using Microsoft.WindowsAzure.MobileServices;
 using System.Diagnostics;
 using Talker.ML;
 using Talker.DAL;
+using System.Net;
 
 namespace Talker.DL
 {
@@ -18,7 +19,7 @@ namespace Talker.DL
 		{
 			if (mMobileService == null) 
 			{
-				mMobileService = new MobileServiceClient (Constants.gCloudApplicationURL);
+				mMobileService = new MobileServiceClient (new Uri(Constants.gCloudApplicationURL),Constants.gCloudApplicationKey);
 			}
 		}
 
@@ -40,31 +41,36 @@ namespace Talker.DL
 			LoginRequest loginRequest = new LoginRequest (pName, pPassword); 
 
 			try
-            {
+			{
 				loginResult = await mMobileService.InvokeApiAsync<WebObject,JObject>("LoginRequest",loginRequest);
-            }
-            catch(MobileServiceInvalidOperationException e) 
-            {
-				Debug.WriteLine (e.Message);
-                return null;
-            }
+			}
+			catch(MobileServiceInvalidOperationException e)
+			{
+				string json = @"{Exception:'" + e.Message + "'}";
+				loginResult = JObject.Parse (json);
+			}
 
 			return loginResult;
 		}
 
-		public async Task RegisterUserRemote(string pName, string pPassword, UserType pUserType)
+		public async Task<JObject> RegisterUserRemote(string pName, string pPassword, UserType pUserType)
 		{
+			JObject registerResult;
 			RegisterRequest registerRequest = new RegisterRequest (pName, pPassword, pUserType);
 
 			try
 			{
 				await mMobileService.InvokeApiAsync<WebObject,JObject>("RegisterRequest",registerRequest);
+				string json = @"{Created:''}";
+				registerResult = JObject.Parse (json);
 			}
 			catch(MobileServiceInvalidOperationException e)
 			{
-				Debug.WriteLine (e.Message);
-				return;
+				string json = @"{Exception:'" + e.Message + "'}";
+				registerResult = JObject.Parse (json);
 			}
+
+			return registerResult;
 		}
 	}
 }

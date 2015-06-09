@@ -5,6 +5,8 @@ using Talker.ML;
 using Talker.DAL;
 using Newtonsoft.Json.Linq;
 using System.Diagnostics;
+using Microsoft.WindowsAzure.MobileServices;
+using System.Threading.Tasks;
 
 namespace Talker.VL
 {
@@ -43,34 +45,43 @@ namespace Talker.VL
             await mUserServiceLocal.RefreshDataAsync();
         }
 
-        protected async void OnLoginButtonClicked(object sender, EventArgs e)
+		protected async void OnLoginButtonClicked(object sender, EventArgs e)
         {
 			User one = (User)BindingContext;
 
 			//Remote
+			//Shuran: How to deal with Json
+			//Reference: https://components.xamarin.com/view/json.net
 			JObject loginResult = await mUserServiceRemote.LogInUserRemote(one.Name,one.Password);
-			Debug.WriteLine (loginResult.ToString ());
 
-			//Local
-            await mUserServiceLocal.RefreshDataAsync();
+			if (loginResult["Exception"] != null) 
+			{
+				DisplayAlert ("Failed", loginResult["Exception"].ToString(), "OK");
+			} 
+			else 
+			{
+				DisplayAlert ("Success", loginResult.ToString(), "OK");
 
-            User user = await mUserServiceLocal.GetUser(one.Name, one.Password, one.Type);
+				//Local
+				await mUserServiceLocal.RefreshDataAsync ();
 
-            if (user != null)
-            {
-                //Console.WriteLine("Get User");
+				User user = await mUserServiceLocal.GetUser (one.Name, one.Password, one.Type);
 
-                // Init the current user ID
-                GlobalManager.Instance.CurrentUser = user;
+				if (user != null) {
+					//Console.WriteLine("Get User");
 
-                // Init the friends
-                mUserServiceLocal.InitFriends();
+					// Init the current user ID
+					GlobalManager.Instance.CurrentUser = user;
 
-                // Pop messagelist
-                await mMessageService.RefreshDataAsync(user.ID);
-                var messageListPage = new MessageListPage();
-                await Navigation.PushAsync(messageListPage);
-            }
+					// Init the friends
+					mUserServiceLocal.InitFriends ();
+
+					// Pop messagelist
+					await mMessageService.RefreshDataAsync (user.ID);
+					var messageListPage = new MessageListPage ();
+					await Navigation.PushAsync (messageListPage);
+				}
+			}
         }
 
         protected async void OnRegisterButtonClicked(object sender, EventArgs e)
@@ -78,11 +89,19 @@ namespace Talker.VL
 			User one = (User)BindingContext;
 
 			//Remote
-			await mUserServiceRemote.RegisterUserRemote(one.Name,one.Password,one.Type);
+			JObject registerResult = await mUserServiceRemote.RegisterUserRemote(one.Name,one.Password,one.Type);
 
-			//Local
-            // YIKANG P1: register name and password to user
-            await mUserServiceLocal.InsertUserAsync(one);
+			if (registerResult["Exception"] != null) 
+			{
+				DisplayAlert ("Failed", registerResult["Exception"].ToString(), "OK");
+			} 
+			else 
+			{
+				DisplayAlert ("Success", registerResult["Created"].ToString(), "OK");
+				//Local
+				// YIKANG P1: register name and password to user
+				await mUserServiceLocal.InsertUserAsync (one);
+			}
         }
 
         protected void OnUserTypeChanged(object sender, EventArgs e)

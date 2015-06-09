@@ -8,7 +8,7 @@ namespace Talker.DAL
 	public interface IUserDBRemote
 	{
 		Task<JObject> LogInUserRemote(string pName, string pPassword);
-		Task RegisterUserRemote (string pName, string pPassword, UserType pUserType);
+		Task<JObject> RegisterUserRemote (string pName, string pPassword, UserType pUserType);
 	}
 }
 
