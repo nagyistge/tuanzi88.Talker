@@ -23,15 +23,17 @@ namespace Talker.DAL
             }
         }
 
-        public void Init(IUserDBLocal pUserService, IMessageDB pMessageService)
+		public void Init(IUserDBLocal pUserServiceLocal, IUserDBRemote pUserServiceRemote, IMessageDB pMessageService)
         {
-            UserService = pUserService;
+            UserServiceLocal = pUserServiceLocal;
             MessageseService = pMessageService;
+			UserServiceRemote = pUserServiceRemote;
         }
 
         // Services
-        public IUserDBLocal UserService { get; private set; }
+        public IUserDBLocal UserServiceLocal { get; private set; }
         public IMessageDB MessageseService { get; private set; }
+		public IUserDBRemote UserServiceRemote { get; private set; }
 
         // Data
         public User CurrentUser { get; set; }

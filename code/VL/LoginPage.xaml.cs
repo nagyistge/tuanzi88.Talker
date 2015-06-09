@@ -3,20 +3,24 @@ using System.Collections.Generic;
 using Xamarin.Forms;
 using Talker.ML;
 using Talker.DAL;
+using Newtonsoft.Json.Linq;
+using System.Diagnostics;
 
 namespace Talker.VL
 {
     public partial class LoginPage : ContentPage
     {
-        IUserDBLocal mUserService;
+        IUserDBLocal mUserServiceLocal;
+		IUserDBRemote mUserServiceRemote;
         IMessageDB mMessageService;
 
         public LoginPage()
-        {
+		{
             InitializeComponent();
 
             // Service
-            mUserService = GlobalManager.Instance.UserService;
+			mUserServiceLocal = GlobalManager.Instance.UserServiceLocal;
+			mUserServiceRemote = GlobalManager.Instance.UserServiceRemote;
             mMessageService = GlobalManager.Instance.MessageseService;
 
             // Title
@@ -36,15 +40,21 @@ namespace Talker.VL
         {
             base.OnAppearing();
 
-            await mUserService.RefreshDataAsync();
+            await mUserServiceLocal.RefreshDataAsync();
         }
 
         protected async void OnLoginButtonClicked(object sender, EventArgs e)
         {
-            await mUserService.RefreshDataAsync();
+			User one = (User)BindingContext;
 
-            User one = (User)BindingContext;
-            User user = await mUserService.GetUser(one.Name, one.Password, one.Type);
+			//Remote
+			JObject loginResult = await mUserServiceRemote.LogInUserRemote(one.Name,one.Password);
+			Debug.WriteLine (loginResult.ToString ());
+
+			//Local
+            await mUserServiceLocal.RefreshDataAsync();
+
+            User user = await mUserServiceLocal.GetUser(one.Name, one.Password, one.Type);
 
             if (user != null)
             {
@@ -54,7 +64,7 @@ namespace Talker.VL
                 GlobalManager.Instance.CurrentUser = user;
 
                 // Init the friends
-                mUserService.InitFriends();
+                mUserServiceLocal.InitFriends();
 
                 // Pop messagelist
                 await mMessageService.RefreshDataAsync(user.ID);
@@ -65,9 +75,14 @@ namespace Talker.VL
 
         protected async void OnRegisterButtonClicked(object sender, EventArgs e)
         {
+			User one = (User)BindingContext;
+
+			//Remote
+			await mUserServiceRemote.RegisterUserRemote(one.Name,one.Password,one.Type);
+
+			//Local
             // YIKANG P1: register name and password to user
-            User one = (User)BindingContext;
-            await mUserService.InsertUserAsync(one);
+            await mUserServiceLocal.InsertUserAsync(one);
         }
 
         protected void OnUserTypeChanged(object sender, EventArgs e)

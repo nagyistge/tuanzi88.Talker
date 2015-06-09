@@ -11,12 +11,15 @@ namespace Talker.DL
 	public class UserDBRemote : IUserDBRemote
 	{
 		//Singleton Implementation
-		private static MobileServiceClient mMobileService = new MobileServiceClient(Constants.gCloudApplicationKey);
+		private static MobileServiceClient mMobileService;
 		private static UserDBRemote mUserDBRemote;
 
 		private UserDBRemote()
 		{
-			
+			if (mMobileService == null) 
+			{
+				mMobileService = new MobileServiceClient (Constants.gCloudApplicationURL);
+			}
 		}
 
 		public static UserDBRemote mInstance
