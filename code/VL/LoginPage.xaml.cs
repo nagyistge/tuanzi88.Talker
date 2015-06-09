@@ -8,7 +8,7 @@ namespace Talker.VL
 {
     public partial class LoginPage : ContentPage
     {
-        IUserDB mUserService;
+        IUserDBLocal mUserService;
         IMessageDB mMessageService;
 
         public LoginPage()

@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace TalkerService.WebAPIs.ApiObjects
 {
-    public class LoginRequest
-    {
-        public string mUserName { get; set; }
-        public string mPassword { get; set; }
-    }
+	public class LoginRequest
+	{
+		public string mUserName { get; set; }
+		public string mPassword { get; set; }
+	}
 }

@@ -15,12 +15,12 @@ using Talker.DAL;
  */
 namespace Talker.DL
 {
-    public class UserDB : IUserDB
+    public class UserDBLocal : IUserDBLocal
     {
-        private static UserDB mInstance = new UserDB();
+        private static UserDBLocal mInstance = new UserDBLocal();
         private IMobileServiceSyncTable<User> mUserTable;
 
-        private UserDB ()
+        private UserDBLocal ()
             : base()
 		{
             // Define table for local db
@@ -30,7 +30,7 @@ namespace Talker.DL
             mUserTable = DatabaseService.Instance.CloudDB.GetSyncTable<User>();
 		}
 
-        public static UserDB Instance
+        public static UserDBLocal Instance
         {
             get { 
                 return mInstance;

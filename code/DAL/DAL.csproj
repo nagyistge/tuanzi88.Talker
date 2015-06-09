@@ -33,7 +33,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GlobalManager.cs" />
     <Compile Include="IMessageDB.cs" />
-    <Compile Include="IUserDB.cs" />
+    <Compile Include="IUserDBLocal.cs" />
+    <Compile Include="IUserDBRemote.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>

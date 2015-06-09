@@ -34,6 +34,8 @@
     <Compile Include="Message.cs" />
     <Compile Include="Object.cs" />
     <Compile Include="User.cs" />
+    <Compile Include="LoginRequest.cs" />
+    <Compile Include="RegisterRequest.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>
