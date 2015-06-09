@@ -10,7 +10,7 @@ namespace Talker.DL
 
 		// Azure app specific URL and key
         public const string gCloudApplicationURL = @"https://talker.azure-mobile.net/";
-        public const string gCloudApplicationKey = @"tHduMiKBYdscDusiKwEQHzOiPmQHQj75";
+		public const string gCloudApplicationKey = @"xCKJqrBjIaEApwNmJYPDdWXZWOsevh29";
 	}
 }
 

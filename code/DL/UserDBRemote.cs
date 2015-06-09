@@ -10,17 +10,28 @@ namespace Talker.DL
 {
 	public class UserDBRemote : IUserDBRemote
 	{
-		public MobileServiceClient mMobileService;
+		//Singleton Implementation
+		private static MobileServiceClient mMobileService = new MobileServiceClient(Constants.gCloudApplicationKey);
+		private static UserDBRemote mUserDBRemote;
 
-		public UserDBRemote () : base()
+		private UserDBRemote()
 		{
-			if (mMobileService == null) 
+			
+		}
+
+		public static UserDBRemote mInstance
+		{
+			get
 			{
-				mMobileService = new MobileServiceClient ("");
+				if (mUserDBRemote == null) 
+				{
+					mUserDBRemote = new UserDBRemote ();
+				}
+				return mUserDBRemote;
 			}
 		}
 			
-		public async Task<JObject> GetUserRemote(string pName, string pPassword)
+		public async Task<JObject> LogInUserRemote(string pName, string pPassword)
 		{
 			JObject loginResult;
 			LoginRequest loginRequest = new LoginRequest (pName, pPassword); 
